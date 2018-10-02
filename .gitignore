@@ -1,0 +1,11 @@
+*.suo
+*.user
+*.csproj
+*.unityproj
+*.sln
+*.userprefs
+*.pidb
+*.booproj
+*.svd
+*.consulo
+*.tmp
