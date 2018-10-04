@@ -7,7 +7,7 @@ public class CharacterMove : MonoBehaviour {
 	// 중력값.
 	const float GravityPower = 9.8f; 
 	//　목적지에 도착했다고 보는 정지 거리.
-	const float StoppingDistance = 0.6f;
+	public const float StoppingDistance = 0.6f;
 	
 	// 현재 이동 속도.
 	Vector3 velocity = Vector3.zero; 
@@ -26,7 +26,7 @@ public class CharacterMove : MonoBehaviour {
 	public Vector3 destination; 
 	
 	// 이동 속도.
-	public float walkSpeed = 6.0f;
+	public float walkSpeed = 1.0f;
 	
 	// 회전 속도.
 	public float rotationSpeed = 360.0f;
@@ -37,7 +37,9 @@ public class CharacterMove : MonoBehaviour {
 	void Start () {
 		characterController = GetComponent<CharacterController>();
 		destination = transform.position;
-	}
+      // destination.x = 20;
+
+    }
 	
 	// Update is called once per frame
 	void Update () {

@@ -89,36 +89,40 @@ public class EnemyCtrl : MonoBehaviour {
 
     void Walking()
     {
-        // 대기 시간이 아직 남았다면.
-        if (waitTime > 0.0f)
-        {
-            // 대기 시간을 줄인다.
-            waitTime -= Time.deltaTime;
-            // 대기 시간이 없어지면.
-            if (waitTime <= 0.0f)
-            {
-                // 범위 내의 어딘가.
-                Vector2 randomValue = Random.insideUnitCircle * walkRange;
-                // 이동할 곳을 설정한다.
-                Vector3 destinationPosition = basePosition + new Vector3(randomValue.x, 0.0f, randomValue.y);
-                // 목적지를 지정한다.
-                SendMessage("SetDestination", destinationPosition);
-            }
-        }
-        else
-        {
-            // 목적지에 도착한다.
-            if (characterMove.Arrived())
-            {
-                // 대기 상태로 전환한다.
-                waitTime = Random.Range(waitBaseTime, waitBaseTime * 2.0f);
-            }
-            // 타겟을 발견하면 추적한다.
-            if (attackTarget)
-            {
-                ChangeState(State.Chasing);
-            }
-        }
+        if(characterMove.arrived)
+            ChangeState(State.Attacking);
+
+
+        //// 대기 시간이 아직 남았다면.
+        //if (waitTime > 0.0f)
+        //{
+        //    // 대기 시간을 줄인다.
+        //    waitTime -= Time.deltaTime;
+        //    // 대기 시간이 없어지면.
+        //    if (waitTime <= 0.0f)
+        //    {
+        //        // 범위 내의 어딘가.
+        //        Vector2 randomValue = Random.insideUnitCircle * walkRange;
+        //        // 이동할 곳을 설정한다.
+        //        Vector3 destinationPosition = basePosition + new Vector3(randomValue.x, 0.0f, randomValue.y);
+        //        // 목적지를 지정한다.
+        //        SendMessage("SetDestination", destinationPosition);
+        //    }
+        //}
+        //else
+        //{
+        //    // 목적지에 도착한다.
+        //    if (characterMove.Arrived())
+        //    {
+        //        // 대기 상태로 전환한다.
+        //        waitTime = Random.Range(waitBaseTime, waitBaseTime * 2.0f);
+        //    }
+        //    // 타겟을 발견하면 추적한다.
+        //    if (attackTarget)
+        //    {
+        //        ChangeState(State.Chasing);
+        //    }
+        //}
     }
     // 추적 시작.
     void ChaseStart()
