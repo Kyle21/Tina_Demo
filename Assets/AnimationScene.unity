@@ -193,7 +193,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!1001 &258013427
 Prefab:
@@ -232,7 +232,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4297789873683010, guid: 42032d3423d888a4888addf7ed458f44, type: 2}
       propertyPath: m_RootOrder
-      value: 4
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1990424927847082, guid: 42032d3423d888a4888addf7ed458f44, type: 2}
       propertyPath: m_Name
@@ -303,8 +303,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8693abcf73659f04ab43b7281eed8478, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  arrived: 0
-  destination: {x: 10, y: 0, z: 0}
+  arrived: 1
+  destination: {x: 133, y: 0, z: 0}
   walkSpeed: 6
   rotationSpeed: 360
 --- !u!1 &534669902
@@ -422,7 +422,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1483431744
 Prefab:
@@ -433,7 +433,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4582735842930614, guid: 468dcd7efecac264991b0783507e160a, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -84.7
+      value: -87.28
       objectReference: {fileID: 0}
     - target: {fileID: 4582735842930614, guid: 468dcd7efecac264991b0783507e160a, type: 2}
       propertyPath: m_LocalPosition.y
@@ -441,7 +441,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4582735842930614, guid: 468dcd7efecac264991b0783507e160a, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -70.4
+      value: -60.02
       objectReference: {fileID: 0}
     - target: {fileID: 4582735842930614, guid: 468dcd7efecac264991b0783507e160a, type: 2}
       propertyPath: m_LocalRotation.x
@@ -471,6 +471,11 @@ Prefab:
       propertyPath: m_Layer
       value: 11
       objectReference: {fileID: 0}
+    - target: {fileID: 95713563168992322, guid: 468dcd7efecac264991b0783507e160a,
+        type: 2}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 4734ecb486d037d4d84985c8c7446946, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 468dcd7efecac264991b0783507e160a, type: 2}
   m_IsPrefabAsset: 0
@@ -557,7 +562,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1909102821}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c72621571847d954d8a7387e131b2d0f, type: 3}
   m_Name: 
@@ -572,7 +577,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1909102821}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 221a5a0eb7d17164fb0446d3a5319110, type: 3}
   m_Name: 
@@ -583,7 +588,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1909102821}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ba4e34e97ad6a50409af711a294544dd, type: 3}
   m_Name: 
@@ -600,7 +605,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   arrived: 0
-  destination: {x: 0, y: 0, z: 0}
+  destination: {x: 20, y: 0, z: 0}
   walkSpeed: 6
   rotationSpeed: 360
 --- !u!114 &1909102826
@@ -632,8 +637,23 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1909102821}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 48ce6dd6ed474e94eae779cd7d062ff0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1909102831
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1909102821}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c72621571847d954d8a7387e131b2d0f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  waitBaseTime: 2
+  walkRange: 5
+  basePosition: {x: 0, y: 0, z: 0}
+  dropItemPrefab: []

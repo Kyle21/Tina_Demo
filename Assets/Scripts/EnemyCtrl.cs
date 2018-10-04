@@ -130,11 +130,15 @@ public class EnemyCtrl : MonoBehaviour {
     {
 	    // 이동할 곳을 플레이어에 설정한다.
 	    SendMessage("SetDestination", attackTarget.position);
-	    // 2미터 이내로 접근하면 공격한다.
-	    if (Vector3.Distance( attackTarget.position, transform.position ) <= 2.0f)
-	    {
-		    ChangeState(State.Attacking);
-	    }
+        // 2미터 이내로 접근하면 공격한다.
+        if (Vector3.Distance(attackTarget.position, transform.position) <= 2.0f)
+        {
+            ChangeState(State.Attacking);
+            Debug.Log("접근");
+        }
+        else
+            Debug.Log("미접근");
+        
     }
 
 	// 공격 스테이트가 시작되기 전에 호출된다.
