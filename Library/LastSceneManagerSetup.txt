@@ -1,4 +1,4 @@
 sceneSetups:
-- path: C:/Users/Home/Desktop/UNIDRA_DATA/ChapterProjects/Chapter11/Assets/Scenes/GameScene.unity
+- path: Assets/AnimationScene.unity
   isLoaded: 1
   isActive: 1
