@@ -7,7 +7,25 @@ AnimatorController:
   m_PrefabInternal: {fileID: 0}
   m_Name: PlayerAnimatorController
   serializedVersion: 5
-  m_AnimatorParameters: []
+  m_AnimatorParameters:
+  - m_Name: Speed
+    m_Type: 1
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 0}
+  - m_Name: Attacking
+    m_Type: 4
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 0}
+  - m_Name: Down
+    m_Type: 9
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 0}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -109,7 +127,7 @@ AnimatorStateMachine:
     m_Position: {x: 531, y: 267, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102120320788739620}
-    m_Position: {x: 582, y: 418, z: 0}
+    m_Position: {x: 300, y: 264, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102450522243226634}
     m_Position: {x: 540, y: 156, z: 0}
@@ -122,4 +140,4 @@ AnimatorStateMachine:
   m_EntryPosition: {x: 216, y: 168, z: 0}
   m_ExitPosition: {x: 576, y: 72, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
-  m_DefaultState: {fileID: 1102523940577061946}
+  m_DefaultState: {fileID: 1102120320788739620}
