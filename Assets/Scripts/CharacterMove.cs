@@ -23,13 +23,15 @@ public class CharacterMove : MonoBehaviour {
 	Vector3 forceRotateDirection;
 	
 	// 목적지.
-	public Vector3 destination; 
+	 public Vector3 destination; 
 	
 	// 이동 속도.
 	public float walkSpeed = 1.0f;
 	
 	// 회전 속도.
 	public float rotationSpeed = 360.0f;
+    public Vector3 m_vStartingPos;
+    public Vector3 m_vGoalPos;
 	
 	
 	
@@ -37,6 +39,7 @@ public class CharacterMove : MonoBehaviour {
 	void Start () {
 		characterController = GetComponent<CharacterController>();
 		destination = transform.position;
+        m_vStartingPos = new Vector3(4.838989f, 0.0f, -8.1008f);
       // destination.x = 20;
 
     }
@@ -119,6 +122,12 @@ public class CharacterMove : MonoBehaviour {
 		arrived = false;
 		this.destination = destination;
 	}
+    public void SetDestination()
+    {
+        arrived = false; //자꾸 false로 만드니깐. 애니메이션이 안 변함
+        this.destination = m_vGoalPos;
+
+    }
 	
 	// 지정한 방향으로 향한다.
 	public void SetDirection(Vector3 direction)

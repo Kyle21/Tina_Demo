@@ -23,11 +23,12 @@ public class EnemyCtrl : MonoBehaviour {
         Walking,	// 탐색.
         Chasing,	// 추적.
         Attacking,	// 공격.
+        Idling,
         Died,       // 사망.
     };
 	
-	State state = State.Walking;		// 현재 스테이트.
-	State nextState = State.Walking;	// 다음 스테이트.
+	State state = State.Idling;		// 현재 스테이트.
+	State nextState = State.Idling;	// 다음 스테이트.
 	
 	
 	// Use this for initialization
@@ -44,35 +45,41 @@ public class EnemyCtrl : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		switch (state) {
+        case State.Idling:
+             if (charaAnimation.m_fIdleTime >= 3.0f)
+                    state = State.Walking;
+             break;
+
 		case State.Walking:
 			Walking();
 			break;
-        case State.Chasing:
-            Chasing();
-            break;
+     
         case State.Attacking:
-			Attacking();
+			//Attacking();
 			break;
-		}
+         case State.Chasing:
+               // Chasing();
+                break;
+        }
 		
-		if (state != nextState)
-		{
-			state = nextState;
-			switch (state) {
-			case State.Walking:
-				WalkStart();
-				break;
-            case State.Chasing:
-                ChaseStart();
-                break;
-            case State.Attacking:
-				AttackStart();
-				break;
-            case State.Died:
-                Died();
-                break;
-            }
-		}
+		//if (state != nextState)
+		//{
+		//	state = nextState;
+		//	switch (state) {
+		//	case State.Walking:
+		//		WalkStart();
+		//		break;
+  //          case State.Chasing:
+  //              //ChaseStart();
+  //              break;
+  //          case State.Attacking:
+		//		//AttackStart();
+		//		break;
+  //          case State.Died:
+  //            //  Died();
+  //              break;
+  //          }
+		//}
 	}
 	
 	
@@ -84,13 +91,23 @@ public class EnemyCtrl : MonoBehaviour {
 	
 	void WalkStart()
 	{
-		StateStartCommon();
+		//StateStartCommon();
 	}
 
     void Walking()
     {
+        //if(characterMove.arrived)
+        //    ChangeState(State.Attacking);
+
+
+
+        //Vector3 destinationPosition = characterMove.m_
+        characterMove.SetDestination();
         if(characterMove.arrived)
-            ChangeState(State.Attacking);
+        {
+            state = State.Attacking;
+        }
+
 
 
         //// 대기 시간이 아직 남았다면.
@@ -125,84 +142,84 @@ public class EnemyCtrl : MonoBehaviour {
         //}
     }
     // 추적 시작.
-    void ChaseStart()
-    {
-        StateStartCommon();
-    }
-    // 추적 중.
-    void Chasing()
-    {
-	    // 이동할 곳을 플레이어에 설정한다.
-	    SendMessage("SetDestination", attackTarget.position);
-        // 2미터 이내로 접근하면 공격한다.
-        if (Vector3.Distance(attackTarget.position, transform.position) <= 2.0f)
-        {
-            ChangeState(State.Attacking);
-            Debug.Log("접근");
-        }
-        else
-            Debug.Log("미접근");
+ //   void ChaseStart()
+ //   {
+ //       StateStartCommon();
+ //   }
+ //   // 추적 중.
+ //   void Chasing()
+ //   {
+	//    // 이동할 곳을 플레이어에 설정한다.
+	//    SendMessage("SetDestination", attackTarget.position);
+ //       // 2미터 이내로 접근하면 공격한다.
+ //       if (Vector3.Distance(attackTarget.position, transform.position) <= 2.0f)
+ //       {
+ //           ChangeState(State.Attacking);
+ //           Debug.Log("접근");
+ //       }
+ //       else
+ //           Debug.Log("미접근");
         
-    }
+ //   }
 
-	// 공격 스테이트가 시작되기 전에 호출된다.
-	void AttackStart()
-	{
-		StateStartCommon();
-		status.attacking = true;
+	//// 공격 스테이트가 시작되기 전에 호출된다.
+	//void AttackStart()
+	//{
+	//	StateStartCommon();
+	//	status.attacking = true;
 		
-		// 적이 있는 방향으로 돌아본다.
-		Vector3 targetDirection = (attackTarget.position-transform.position).normalized;
-		SendMessage("SetDirection",targetDirection);
+	//	// 적이 있는 방향으로 돌아본다.
+	//	Vector3 targetDirection = (attackTarget.position-transform.position).normalized;
+	//	SendMessage("SetDirection",targetDirection);
 		
-		// 이동을 멈춘다.
-		SendMessage("StopMove");
-	}
+	//	// 이동을 멈춘다.
+	//	SendMessage("StopMove");
+	//}
 	
-	// 공격 중 처리.
-	void Attacking()
-	{
-		if (charaAnimation.IsAttacked())
-			ChangeState(State.Walking);
-        // 대기 시간을 다시 설정한다.
-        waitTime = Random.Range(waitBaseTime, waitBaseTime * 2.0f);
-        // 타겟을 리셋한다.
-        attackTarget = null;
-    }
+	//// 공격 중 처리.
+	//void Attacking()
+	//{
+	//	if (charaAnimation.IsAttacked())
+	//		ChangeState(State.Walking);
+ //       // 대기 시간을 다시 설정한다.
+ //       waitTime = Random.Range(waitBaseTime, waitBaseTime * 2.0f);
+ //       // 타겟을 리셋한다.
+ //       attackTarget = null;
+ //   }
 
-    void dropItem()
-    {
-        if (dropItemPrefab.Length == 0) { return; }
-        GameObject dropItem = dropItemPrefab[Random.Range(0, dropItemPrefab.Length)];
-        Instantiate(dropItem, transform.position, Quaternion.identity);
-    }
+ //   void dropItem()
+ //   {
+ //       if (dropItemPrefab.Length == 0) { return; }
+ //       GameObject dropItem = dropItemPrefab[Random.Range(0, dropItemPrefab.Length)];
+ //       Instantiate(dropItem, transform.position, Quaternion.identity);
+ //   }
 
-    void Died()
-	{
-        status.died = true;
-        dropItem();
-        Destroy(gameObject);
-    }
+ //   void Died()
+	//{
+ //       status.died = true;
+ //       dropItem();
+ //       Destroy(gameObject);
+ //   }
 	
-	void Damage(AttackArea.AttackInfo attackInfo)
-	{
-		status.HP -= attackInfo.attackPower;
-		if (status.HP <= 0) {
-			status.HP = 0;
-			// 체력이 0이므로 사망 스테이트로 전환한다.
-            ChangeState(State.Died);
-		}
-	}
+	//void Damage(AttackArea.AttackInfo attackInfo)
+	//{
+	//	status.HP -= attackInfo.attackPower;
+	//	if (status.HP <= 0) {
+	//		status.HP = 0;
+	//		// 체력이 0이므로 사망 스테이트로 전환한다.
+ //           ChangeState(State.Died);
+	//	}
+	//}
 	
-	// 스테이트가 시작되기 전에 스테이터스를 초기화한다.
-	void StateStartCommon()
-	{
-		status.attacking = false;
-        status.died = false;
-    }
-    // 공격 대상을 설정한다.
-    public void SetAttackTarget(Transform target)
-    {
-        attackTarget = target;
-    }
+	//// 스테이트가 시작되기 전에 스테이터스를 초기화한다.
+	//void StateStartCommon()
+	//{
+	//	status.attacking = false;
+ //       status.died = false;
+ //   }
+ //   // 공격 대상을 설정한다.
+ //   public void SetAttackTarget(Transform target)
+ //   {
+ //       attackTarget = target;
+ //   }
 }

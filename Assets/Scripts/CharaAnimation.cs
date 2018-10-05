@@ -8,7 +8,11 @@ public class CharaAnimation : MonoBehaviour
 	Vector3 prePosition;
 	bool isDown = false;
 	bool attacked = false;
-    
+
+    public float m_fIdleTime = 2.0f;
+
+
+
 	
 	public bool IsAttacked()
 	{
@@ -29,6 +33,10 @@ public class CharaAnimation : MonoBehaviour
 	{
 		attacked = true;
 	}
+    void ResetIdleTime()
+    {
+        m_fIdleTime = 0.0f;
+    }
 	
 	void Start ()
 	{
@@ -42,38 +50,38 @@ public class CharaAnimation : MonoBehaviour
 	
 	void Update ()
 	{
-        Vector3 delta_position = transform.position - prePosition;
-        // Debug.Log("transform : " + transform.position.ToString());
-        // Debug.Log("prePosition: " + prePosition.ToString());
+        m_fIdleTime += Time.deltaTime;
+        animator.SetFloat("State_Walk", m_fIdleTime);
 
-         animator.SetFloat("Speed", delta_position.magnitude / Time.deltaTime);
 
-        //if (!move.arrived) // 속도로 조절하면 굳이 else 쓸 필요없다.
-        //{
-        //    animator.SetFloat("Speed",   2000.0f*Time.deltaTime);
-        //}
-        //else
-        //    animator.SetFloat("Speed", 0.0f);
+        //Vector3 delta_position = transform.position - prePosition;
+        // animator.SetFloat("Speed", delta_position.magnitude / Time.deltaTime);
+
 
 
         if (move.arrived && Vector3.Distance(transform.position, move.destination) < 0.6)
-            animator.SetBool("Attacking", true);
+        {
+            Debug.Log("공격 애니");
+            animator.SetTrigger("State_Attacking");
+        }
+          
+                // animator.SetBool("Attacking", true);
 
 
 
 
-        if (attacked && !status.attacking)
-		{
-			attacked = false;
-		}
-		animator.SetBool("Attacking", (!attacked && status.attacking));
-		
-		if(!isDown && status.died)
-		{
-			isDown = true;
-			animator.SetTrigger("Down");
-		}
-		
-		//prePosition = transform.position;
-	} 
+        //      if (attacked && !status.attacking)
+        //{
+        //	attacked = false;
+        //}
+        //animator.SetBool("Attacking", (!attacked && status.attacking));
+
+        //if(!isDown && status.died)
+        //{
+        //	isDown = true;
+        //	animator.SetTrigger("Down");
+        //}
+
+        //prePosition = transform.position;
+    } 
 } 
